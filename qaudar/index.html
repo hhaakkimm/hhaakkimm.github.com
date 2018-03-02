@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Аудармашы</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <style>
+      body{
+       background-image: url("images/mount.jpg");
+     }
+     .jumbotron {
+        height: 200px;
+        color: white;
+        text-shadow: #444 0 1px 1px;
+        background:transparent;
+      }
+      </style>
+      <script>
+      var jumboHeight = $('.jumbotron').outerHeight();
+      function parallax(){
+        var scrolled = $(window).scrollTop();
+        $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+      }
+
+      $(window).scroll(function(e){
+        parallax();
+      });
+      </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+
+    <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <h1>Аудармашы</h1>
+        <p>Жаңа қазақ алфавитіне аудармашы</p>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <div class="form-group">
+            <textarea class="form-control" id="kazakh" rows="8" cols="80"></textarea>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8"></div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary" type="button" onclick="myFunction()">Аудар</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <div class="form-group">
+            <textarea class="form-control" id="latin"rows="8" cols="80"></textarea>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+
+
+    <script>
+      function myFunction() {
+          var text = document.getElementById("kazakh").value;
+          var res = "";
+          for (c  in text) {
+              var t = text.charAt(c);
+              if (/[а-яА-ЯЁё]/.test(t) || t=='ә' || t=='ө' || t=='ү' || t=='ұ' || t=='ң' || t=='қ' || t=='Ә' || t=='ғ' || t=='Ғ' || t=='Ө' || t=='Ү' || t=='Ұ' || t=='Ң' || t=='Қ')
+              {
+                  var r = arr[t];
+                  console.log(t + " " + r);
+                  res += r;
+              }
+              else {
+                  res += t;
+              }
+          }
+          document.getElementById("latin").innerHTML = res;
+      }
+    </script>
+  </body>
+  <footer>
+    <center>
+      <H6 style="color:Gray;">This site created by Hakeem</H6>
+    </center>
+  </footer>
+</html>
