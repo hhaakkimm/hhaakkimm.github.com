@@ -1,0 +1,125 @@
+<style>
+ body {
+     padding-left: 1em;
+     padding-right: 1em;
+ }
+ #resume {
+     max-width: 65em;
+     margin: 1em auto;
+     font-family: 'Roboto', sans-serif;
+     font-weight: 100;
+ }
+ body, a {
+     color: #222;
+ }
+ a {
+     text-decoration: none;
+     font-weight: 300;
+ }
+ header {
+     width: 30em;
+     margin: 0 auto;
+     text-align: center;
+     border-bottom: solid 2px #ddd;
+     margin-bottom: 2em;
+ }
+ header ul {
+     list-style: none;
+     padding-left: 0;
+     margin-top: 0.3em;
+     margin-bottom: 1.5em;
+ }
+ header ul li {
+     display: inline;
+     margin-right: 1em;
+ }
+ header ul li a {
+     font-family: 'Open Sans', sans-serif;
+     text-decoration: none;
+     font-weight: 500;
+     color: #999;
+ }
+ h1 {
+     font-size: 4em;
+     font-weight: 100;
+     margin-bottom: 0;
+ }
+ h1 em {
+     font-weight: 400;
+     font-style: normal;
+ }
+ article {
+     display: flex;
+ }
+ aside {flex: 1;}
+ main {flex: 2;}
+ aside, main {
+     padding-left: 1em;
+     padding-right: 0.5em;
+ }
+ h2 {
+     text-transform: uppercase;
+     font-weight: 100;
+     font-size: 1.8em;
+     color: #888;
+     margin: 0;
+ }
+ h3 {
+     font-family: 'Open Sans', sans-serif;
+     text-transform: uppercase;
+     font-weight: 600;
+     font-size: 1.5em;
+     color: #333;
+     margin: 0;
+ }
+ h3 summary {
+     display: inline;
+     font-size: 0.7em;
+     font-weight: 300;
+     color: #777;
+ }
+ section {
+     margin-top: 1.5em;
+     margin-bottom: 1em;
+ }
+ info {
+     font-family: 'Open Sans', sans-serif;
+     font-weight: 600;
+     color: #888;
+ }
+ info span:first-child::after {
+     content: '|';
+     margin-left: 0.1em;
+ }
+ p {
+     margin-top: 0.3em;
+     margin-bottom: 0.3em;
+ }
+ aside ul {
+     list-style-type: none;
+     padding-left: 0.6em;
+     margin-top: 0.7em;
+ }
+ table {
+     margin-top: 1em;
+ }
+ table td {
+     padding-left: 1em;
+     color: #222;
+     font-weight: 100;
+ }
+ main li {
+     margin-top: 0.2em;
+ }
+ main ul {
+     padding-left: 1em;
+ }
+ .stars {
+     font-weight: 300;
+ }
+ .stars::before {
+     content: '⭐';
+     margin-right: -3px;
+     margin-left: 3px;
+ }
+</style>
