@@ -235,6 +235,15 @@ header h1 em {
 
 /* Responsive */
 @media (max-width: 768px) {
+  :root {
+    --spacing-xl: 32px;
+    --spacing-lg: 16px;
+  }
+
+  .container {
+    padding: var(--spacing-lg);
+  }
+
   .overview-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
@@ -242,7 +251,6 @@ header h1 em {
 
   .sidebar {
     order: 2;
-    /* Move sidebar below main content on mobile */
     border-top: 1px solid var(--border-color);
     padding-top: var(--spacing-lg);
   }
@@ -250,15 +258,44 @@ header h1 em {
   header {
     flex-direction: column;
     text-align: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  header h1 {
+    font-size: 1.75rem;
   }
 
   .contact-nav {
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .contact-nav a {
+    margin-left: 0;
   }
 
   .tabs-nav {
     overflow-x: auto;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(250, 250, 250, 0.95);
+    backdrop-filter: blur(5px);
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 8px 16px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-btn {
+    flex: 0 0 auto;
   }
 }
 
