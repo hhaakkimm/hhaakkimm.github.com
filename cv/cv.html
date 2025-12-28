@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulkhakim Abdrakhman - Software Engineer CV</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #2980b9;
+            --text-color: #333;
+            --light-text: #666;
+            --date-color: #7f8c8d;
+            --border-color: #ecf0f1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.4;
+            /* Reduced from 1.5 */
+            color: var(--text-color);
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 25px;
+            /* Reduced padding */
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 24px;
+            /* Reduced from 28px */
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        h2 {
+            font-size: 14px;
+            /* Reduced from 16px */
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 3px;
+            margin-top: 12px;
+            /* Reduced margin */
+            margin-bottom: 8px;
+            /* Reduced margin */
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            margin-bottom: 6px;
+            font-size: 12.5px;
+            /* Reduced from 14px */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            /* Reduced margin */
+        }
+
+        .contact-info {
+            font-size: 12.5px;
+            /* Reduced from 14px */
+            color: var(--light-text);
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            margin-bottom: 10px;
+            /* Reduced margin */
+        }
+
+        .job-entry {
+            margin-bottom: 8px;
+            /* Reduced spacing between jobs */
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 13px;
+        }
+
+        .job-title {
+            font-style: italic;
+            color: var(--secondary-color);
+            font-size: 13px;
+        }
+
+        .date {
+            font-size: 12px;
+            color: var(--date-color);
+            font-weight: 500;
+            text-align: right;
+            min-width: 90px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+
+        li {
+            font-size: 12.5px;
+            /* Reduced from 13.5px */
+            margin-bottom: 2px;
+            color: #444;
+            line-height: 1.35;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            /* Reduced label width */
+            gap: 8px;
+            font-size: 12.5px;
+            margin-bottom: 4px;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        /* Print optimizations to force one page */
+        @page {
+            size: A4;
+            margin: 8mm 12mm;
+            /* Tighter margins */
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            h2 {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Abdulkhakim Abdrakhman</h1>
+        <div class="contact-info">
+            <span>+7 (747) 542 42 01</span>
+            <span>hakeem.abdrakhman@gmail.com</span>
+            <span><a href="https://linkedin.com/in/a-abdulkhakim/">linkedin.com/in/a-abdulkhakim</a></span>
+            <span><a href="https://github.com/hhaakkimm">github.com/hhaakkimm</a></span>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="section">
+        <p>
+            Results-oriented <strong>Senior Software Engineer</strong> and entrepreneur with 5+ years of experience
+            constructing scalable applications and robust IT infrastructure. Expert in full-stack development using
+            <strong>Flutter</strong>, <strong>React.js</strong>, <strong>Django</strong>, and <strong>Node.js</strong>.
+            Proven track record of managing 400+ device ecosystems and mentoring over 100 students. Passionate about
+            leveraging algorithmic optimization and AI agents (RAG) to solve complex technical challenges.
+        </p>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+        <h2>Professional Experience</h2>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div>
+                    <span class="company-name">Ihkim</span> | <span class="job-title">Software Engineer & Founder</span>
+                </div>
+                <span class="date">2025 – Present</span>
+            </div>
+            <ul>
+                <li>Engineered "PartySpark," a mobile game using <strong>Flutter</strong> and <strong>Django Rest
+                        Framework</strong>; integrated RAG architecture for a sustainable AI agent.</li>
+                <li>Developed "Discipline Journey," a productivity mobile application utilizing Generative AI for
+                    dynamic content creation.</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div>
+                    <span class="company-name">Academie One</span> | <span class="job-title">Founding Team & Senior
+                        Software Engineer</span>
+                </div>
+                <span class="date">2020 – 2025</span>
+            </div>
+            <ul>
+                <li>Architected an enterprise-grade IT infrastructure for 400+ iMacs, implementing custom MDM with Munki
+                    and GraphQL.</li>
+                <li>Automated device provisioning through <strong>Zero-Touch Deployment</strong>, reducing setup time by
+                    90% and ensuring standardized security compliance.</li>
+                <li>Developed a high-performance registration portal using <strong>Next.js</strong> and React.js,
+                    streamlining the onboarding for thousands of users.</li>
+                <li>Designed brand identity and operational guidelines; created a custom e-judge testing system with
+                    plagiarism detection to grade 100+ weekly participants.</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div>
+                    <span class="company-name">Avantage One</span> | <span class="job-title">Founding Team & Software
+                        Engineer</span>
+                </div>
+                <span class="date">2021 – 2025</span>
+            </div>
+            <ul>
+                <li>Co-founded an IT solution consultancy; established a talent pipeline placing students into
+                    internships and full-time roles.</li>
+                <li>Built "Kaltada," a 15-minute grocery delivery platform using <strong>Fastify.js</strong>, Node.js,
+                    and <strong>PostgreSQL</strong> for high-concurrency order processing.</li>
+                <li>Delivered multiple client projects using Django Rest Framework and React.js.</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div>
+                    <span class="company-name">Teamway</span> | <span class="job-title">Software Engineer</span>
+                </div>
+                <span class="date">2020 – 2022</span>
+            </div>
+            <ul>
+                <li>Developed "IKEA Today" platform using <strong>React.js</strong> with 10+ complex custom CSS
+                    animations.</li>
+                <li>Optimized front-end performance for large-scale global traffic, ensuring fully responsive design.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Combined older roles to save space if needed, or keep succinct -->
+        <div class="job-entry">
+            <div class="job-header">
+                <div>
+                    <span class="company-name">Technovation / Method.KZ</span> | <span class="job-title">Technical
+                        Mentor & Coach</span>
+                </div>
+                <span class="date">2017 – 2018</span>
+            </div>
+            <ul>
+                <li>Mentored Team “High Five” to National win and Global recognition (Technovation 2018).</li>
+                <li>Led students to achieve 7 regional, 4 national, and 5 international medals in programming
+                    (Method.KZ).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">Languages</div>
+            <div>C++, Python, Swift, Java, JavaScript (ES6+), TypeScript, Ruby, C.</div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">Frameworks</div>
+            <div>Flutter, React.js, Next.js, Django, Node.js (Fastify/Express), Vue.js, Ruby on Rails.</div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">Tools & Infra</div>
+            <div>PostgreSQL, GraphQL, Git, Linux, macOS Administration (MDM), Munki.</div>
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+        <h2>Education</h2>
+        <div class="job-header">
+            <div>
+                <strong>International IT University</strong>, Kazakhstan
+            </div>
+            <span class="date">2016 – 2021</span>
+        </div>
+        <p style="margin-top: -2px;">BS in Computer Science and Software Development</p>
+
+        <div class="job-header" style="margin-top: 4px;">
+            <div>
+                <strong>42 Silicon Valley</strong>, Fremont, CA
+            </div>
+            <span class="date">2018 – 2019</span>
+        </div>
+        <p style="margin-top: -2px; margin-bottom: 2px;">Deep Dive Software Engineering Program (Level 15/21)</p>
+        <ul style="margin-top: 2px;">
+            <li>Built a custom Linux-like OS kernel and shell from scratch using only <strong>C</strong> and
+                <strong>Assembler</strong>, implementing core utilities (`ls`, etc.) and security protocols.</li>
+            <li>Re-engineered standard libraries, including a custom `printf` handling all flags via system calls
+                (`write`), optimizing for low-level performance.</li>
+            <li>Achieved <strong>Level 15</strong> out of 21, ranking in the top tier of the rigorous peer-learning
+                curriculum.</li>
+        </ul>
+    </div>
+
+    <!-- Honors & Awards -->
+    <div class="section" style="margin-bottom: 0;">
+        <h2>Honors & Awards</h2>
+        <ul style="margin-bottom: 0;">
+            <li><strong>ACM-ICPC</strong>: Semifinalist (2017, 2019), 2nd place in Quarterfinals (2019).</li>
+            <li><strong>National Olympiad of Informatics</strong>: Gold Medalist (2015), Bronze Medalist (2014).</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
