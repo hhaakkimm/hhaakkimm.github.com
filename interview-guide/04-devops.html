@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps & Cloud - Interview Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        p,
+        li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        ul,
+        ol {
+            margin-left: 2rem;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: #764ba2;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Index</a>
+
+        <h1>🐳 DevOps & Cloud Infrastructure</h1>
+
+        <h2>Docker & Containerization</h2>
+
+        <h3>Docker Fundamentals</h3>
+        <ul>
+            <li><strong>Images vs Containers:</strong> Images are blueprints, containers are running instances</li>
+            <li><strong>Dockerfile Best Practices:</strong>
+                <pre># Multi-stage build for Django app
+FROM python:3.11-slim as builder
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
+COPY . .
+
+ENV PATH=/root/.local/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]</pre>
+            </li>
+            <li><strong>Docker Commands:</strong>
+                <pre># Build image
+docker build -t vuln-platform:latest .
+
+# Run container
+docker run -d -p 8000:8000 --name web vuln-platform:latest
+
+# Execute command in running container
+docker exec -it web python manage.py migrate
+
+# View logs
+docker logs -f web
+
+# Stop and remove
+docker stop web && docker rm web</pre>
+            </li>
+        </ul>
+
+        <h3>Docker Compose</h3>
+        <pre># docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql://user:pass@db:3306/vuln_db
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./app:/app
+  
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: vuln_db
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+  
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+  
+  celery:
+    build: .
+    command: celery -A config worker -l info
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  mysql_data:</pre>
+
+        <h3>Container Optimization</h3>
+        <ul>
+            <li>Use Alpine images for smaller size</li>
+            <li>Multi-stage builds to reduce final image size</li>
+            <li>.dockerignore file to exclude unnecessary files</li>
+            <li>Layer caching - order commands by change frequency</li>
+        </ul>
+
+        <h2>AWS Cloud Services</h2>
+
+        <h3>Core AWS Services</h3>
+        <ul>
+            <li><strong>EC2:</strong> Virtual servers
+                <ul>
+                    <li>Instance types (t3, m5, c5)</li>
+                    <li>Auto Scaling Groups</li>
+                    <li>Elastic Load Balancer (ALB vs NLB)</li>
+                </ul>
+            </li>
+            <li><strong>ECS/EKS:</strong> Container orchestration
+                <ul>
+                    <li>ECS: AWS-managed Docker orchestration</li>
+                    <li>EKS: Managed Kubernetes</li>
+                    <li>Fargate: Serverless containers</li>
+                </ul>
+            </li>
+            <li><strong>RDS:</strong> Managed relational databases
+                <ul>
+                    <li>MySQL, PostgreSQL</li>
+                    <li>Read replicas for scaling</li>
+                    <li>Automated backups and snapshots</li>
+                </ul>
+            </li>
+            <li><strong>S3:</strong> Object storage
+                <ul>
+                    <li>Storage classes (Standard, IA, Glacier)</li>
+                    <li>Versioning and lifecycle policies</li>
+                    <li>Static website hosting</li>
+                </ul>
+            </li>
+            <li><strong>Lambda:</strong> Serverless compute
+                <pre>import json
+import boto3
+
+def lambda_handler(event, context):
+    # Process vulnerability scan results
+    s3 = boto3.client('s3')
+    data = s3.get_object(Bucket='scans', Key=event['key'])
+    
+    # Parse and store in database
+    vulnerabilities = parse_scan_results(data)
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f'Processed {len(vulnerabilities)} vulns')
+    }</pre>
+            </li>
+            <li><strong>CloudWatch:</strong> Monitoring and logging</li>
+            <li><strong>VPC:</strong> Virtual Private Cloud, subnets, security groups</li>
+            <li><strong>IAM:</strong> Identity and Access Management, roles, policies</li>
+        </ul>
+
+        <h3>AWS Architecture Example</h3>
+        <pre>┌─────────────────────────────────────────────────────────┐
+│                        Internet                          │
+└──────────────────────┬───────────────────────────────────┘
+         │
+┌────────▼────────┐
+│   CloudFront    │ (CDN for static assets)
+│   + Route53     │ (DNS)
+└────────┬────────┘
+         │
+┌────────▼────────┐
+│  ALB (Load      │
+│   Balancer)     │
+└──┬────────────┬─┘
+   │            │
+┌──▼──┐     ┌──▼──┐
+│ ECS │     │ ECS │ (Django containers)
+│Task │     │Task │
+└──┬──┘     └──┬──┘
+   │            │
+   └──────┬─────┘
+          │
+    ┌─────▼─────┐
+    │    RDS    │ (MySQL)
+    │  Primary  │
+    └─────┬─────┘
+          │
+    ┌─────▼─────┐
+    │RDS Replica│ (Read scaling)
+    └───────────┘</pre>
+
+        <h2>Linux Platform Management</h2>
+
+        <h3>Essential Linux Skills</h3>
+        <ul>
+            <li><strong>System Administration:</strong>
+                <pre># Process management
+ps aux | grep python
+top / htop
+kill -9 <PID>
+
+# Disk usage
+df -h
+du -sh /var/log/*
+
+# Network
+netstat -tulpn
+curl -I https://api.example.com
+
+# Logs
+tail -f /var/log/nginx/access.log
+journalctl -u myservice -f</pre>
+            </li>
+            <li><strong>User & Permissions:</strong>
+                <pre>chmod 755 script.sh
+chown www-data:www-data /var/www
+sudo systemctl restart nginx</pre>
+            </li>
+            <li><strong>Package Management:</strong>
+                <pre># Ubuntu/Debian
+apt update && apt upgrade
+apt install nginx
+
+# CentOS/RHEL
+yum update
+yum install httpd</pre>
+            </li>
+        </ul>
+
+        <h2>CI/CD Pipelines</h2>
+
+        <h3>GitHub Actions Example</h3>
+        <pre># .github/workflows/deploy.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      - name: Run tests
+        run: pytest --cov=./ --cov-report=xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+  
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build -t vuln-platform:${{ github.sha }} .
+      - name: Push to ECR
+        run: |
+          aws ecr get-login-password | docker login --username AWS --password-stdin
+          docker push vuln-platform:${{ github.sha }}
+  
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service --cluster prod --service web --force-new-deployment</pre>
+
+        <h3>Alternative Tools</h3>
+        <ul>
+            <li><strong>GitLab CI/CD:</strong> .gitlab-ci.yml</li>
+            <li><strong>Jenkins:</strong> Jenkinsfile pipelines</li>
+            <li><strong>CircleCI:</strong> .circleci/config.yml</li>
+        </ul>
+
+        <h2>Infrastructure as Code</h2>
+
+        <h3>Terraform Example</h3>
+        <pre># main.tf
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_ecs_cluster" "main" {
+  name = "vuln-platform-cluster"
+}
+
+resource "aws_ecs_service" "web" {
+  name            = "web-service"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.web.arn
+  desired_count   = 3
+  
+  load_balancer {
+    target_group_arn = aws_lb_target_group.web.arn
+    container_name   = "web"
+    container_port   = 8000
+  }
+}</pre>
+
+        <h2>Common Interview Questions</h2>
+        <ol>
+            <li><strong>Explain the difference between a container and a VM.</strong></li>
+            <li><strong>How would you containerize a Django + React application?</strong></li>
+            <li><strong>What's the difference between ECS and EKS?</strong></li>
+            <li><strong>How do you handle secrets in containers?</strong> (AWS Secrets Manager, env vars)</li>
+            <li><strong>Design a CI/CD pipeline for this vulnerability platform.</strong></li>
+            <li><strong>How would you implement zero-downtime deployment?</strong> (Blue-green, rolling updates)</li>
+            <li><strong>Explain horizontal vs vertical scaling.</strong></li>
+            <li><strong>What monitoring would you add to production?</strong> (CloudWatch, Datadog, Prometheus)</li>
+        </ol>
+
+        <a href="index.html" class="back-btn">← Back to Index</a>
+    </div>
+</body>
+
+</html>

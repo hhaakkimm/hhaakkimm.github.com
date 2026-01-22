@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Databases - Interview Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        p,
+        li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        ul,
+        ol {
+            margin-left: 2rem;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: #764ba2;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Index</a>
+
+        <h1>🗄️ Databases: MySQL & SingleStore</h1>
+
+        <h2>MySQL Fundamentals</h2>
+
+        <h3>Core Concepts</h3>
+        <ul>
+            <li><strong>ACID Properties:</strong> Atomicity, Consistency, Isolation, Durability</li>
+            <li><strong>Storage Engines:</strong> InnoDB (default, ACID-compliant), MyISAM (no transactions)</li>
+            <li><strong>Data Types:</strong> INT, VARCHAR, TEXT, DATETIME, TIMESTAMP, JSON, BLOB</li>
+            <li><strong>Indexes:</strong>
+                <pre>-- B-Tree index (default)
+CREATE INDEX idx_cve_id ON vulnerabilities(cve_id);
+
+-- Composite index
+CREATE INDEX idx_severity_status ON vulnerabilities(severity, status);
+
+-- Full-text search
+CREATE FULLTEXT INDEX idx_description ON vulnerabilities(description);
+
+-- Check index usage
+EXPLAIN SELECT * FROM vulnerabilities WHERE cve_id = 'CVE-2024-1234';</pre>
+            </li>
+        </ul>
+
+        <h3>Query Optimization</h3>
+        <ul>
+            <li><strong>EXPLAIN Analysis:</strong>
+                <pre>EXPLAIN SELECT v.*, a.name 
+FROM vulnerabilities v
+JOIN assets a ON v.asset_id = a.id
+WHERE v.severity = 'CRITICAL';</pre>
+            </li>
+            <li><strong>Index Strategies:</strong>
+                <ul>
+                    <li>Index foreign keys</li>
+                    <li>Index columns used in WHERE, ORDER BY, GROUP BY</li>
+                    <li>Use covering indexes when possible</li>
+                    <li>Avoid over-indexing (slows INSERT/UPDATE)</li>
+                </ul>
+            </li>
+            <li><strong>Query Best Practices:</strong>
+                <ul>
+                    <li>Use LIMIT for pagination</li>
+                    <li>Avoid SELECT * (specify columns)</li>
+                    <li>Use JOIN instead of subqueries when possible</li>
+                    <li>Batch INSERT operations</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Advanced Features</h3>
+        <ul>
+            <li><strong>Transactions:</strong>
+                <pre>START TRANSACTION;
+
+UPDATE vulnerabilities SET status = 'resolved' WHERE id = 123;
+INSERT INTO audit_log (action, vulnerability_id) VALUES ('resolved', 123);
+
+COMMIT;  -- or ROLLBACK on error</pre>
+            </li>
+            <li><strong>Stored Procedures:</strong>
+                <pre>DELIMITER//
+
+CREATE PROCEDURE GetCriticalVulnerabilities()
+BEGIN
+    SELECT * FROM vulnerabilities 
+    WHERE severity = 'CRITICAL' 
+    AND status = 'open';
+END //
+
+DELIMITER;</pre>
+            </li>
+            <li><strong>Triggers:</strong>
+                <pre>CREATE TRIGGER update_timestamp
+BEFORE UPDATE ON vulnerabilities
+FOR EACH ROW
+SET NEW.updated_at = CURRENT_TIMESTAMP;</pre>
+            </li>
+            <li><strong>Views:</strong>
+                <pre>CREATE VIEW critical_open_vulns AS
+SELECT v.*, a.name as asset_name
+FROM vulnerabilities v
+JOIN assets a ON v.asset_id = a.id
+WHERE v.severity = 'CRITICAL' AND v.status = 'open';</pre>
+            </li>
+        </ul>
+
+        <h2>SingleStore (MemSQL)</h2>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li><strong>Distributed SQL Database:</strong> MySQL wire protocol compatible</li>
+            <li><strong>RowStore vs ColumnStore:</strong>
+                <ul>
+                    <li>RowStore: OLTP workloads, fast writes, point queries</li>
+                    <li>ColumnStore: OLAP workloads, analytics, aggregations</li>
+                </ul>
+            </li>
+            <li><strong>In-Memory Performance:</strong> Caching and lock-free data structures</li>
+            <li><strong>Scalability:</strong> Horizontal scaling with distributed partitions</li>
+        </ul>
+
+        <h3>When to Use SingleStore</h3>
+        <ul>
+            <li>Real-time analytics on large datasets</li>
+            <li>High-velocity data ingestion (150+ security tools)</li>
+            <li>Complex aggregations across billions of vulnerability records</li>
+            <li>Mixed OLTP and OLAP workloads</li>
+        </ul>
+
+        <h2>Database Design for Vulnerability Management</h2>
+
+        <h3>Schema Example</h3>
+        <pre>-- Assets table
+CREATE TABLE assets (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    type ENUM('server', 'application', 'network', 'container'),
+    ip_address VARCHAR(45),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_type (type)
+);
+
+-- Vulnerabilities table
+CREATE TABLE vulnerabilities (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cve_id VARCHAR(20) UNIQUE,
+    asset_id INT,
+    severity ENUM('LOW', 'MEDIUM', 'HIGH', 'CRITICAL'),
+    status ENUM('open', 'in_progress', 'resolved', 'false_positive'),
+    cvss_score DECIMAL(3,1),
+    description TEXT,
+    source_tool VARCHAR(100),
+    discovered_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (asset_id) REFERENCES assets(id),
+    INDEX idx_severity_status (severity, status),
+    INDEX idx_cve_id (cve_id),
+    INDEX idx_source (source_tool),
+    FULLTEXT idx_description (description)
+);
+
+-- Remediation actions
+CREATE TABLE remediation_actions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+   vulnerability_id INT,
+    action_type ENUM('patch', 'mitigate', 'accept_risk'),
+    assigned_to VARCHAR(100),
+    due_date DATE,
+    completed_at TIMESTAMP NULL,
+    FOREIGN KEY (vulnerability_id) REFERENCES vulnerabilities(id)
+);</pre>
+
+        <h3>Normalization</h3>
+        <ul>
+            <li><strong>1NF:</strong> Atomic values, no repeating groups</li>
+            <li><strong>2NF:</strong> No partial dependencies</li>
+            <li><strong>3NF:</strong> No transitive dependencies</li>
+            <li><strong>Denormalization:</strong> When to break rules for performance (read-heavy systems)</li>
+        </ul>
+
+        <h2>Performance & Scaling</h2>
+
+        <h3>Partitioning</h3>
+        <pre>-- Partition by date range
+CREATE TABLE vulnerability_history (
+    id INT,
+    discovery_date DATE,
+    ...
+)
+PARTITION BY RANGE (YEAR(discovery_date)) (
+    PARTITION p2023 VALUES LESS THAN (2024),
+    PARTITION p2024 VALUES LESS THAN (2025),
+    PARTITION p2025 VALUES LESS THAN (2026)
+);</pre>
+
+        <h3>Replication</h3>
+        <ul>
+            <li><strong>Master-Slave:</strong> Read replicas for scaling reads</li>
+            <li><strong>Master-Master:</strong> Multi-region writes</li>
+            <li><strong>Group Replication:</strong> Multi-master with conflict resolution</li>
+        </ul>
+
+        <h3>Caching Strategies</h3>
+        <ul>
+            <li>Query result caching (Redis, Memcached)</li>
+            <li>Application-level caching</li>
+            <li>MySQL query cache (deprecated in MySQL 8.0)</li>
+        </ul>
+
+        <h2>Big Data Analytics Systems</h2>
+
+        <h3>Comparison (Know the Basics)</h3>
+        <ul>
+            <li><strong>BigQuery:</strong> Google Cloud serverless data warehouse, SQL-based, columnar storage</li>
+            <li><strong>Redshift:</strong> AWS data warehouse, Postgres-based, columnar</li>
+            <li><strong>Snowflake:</strong> Cloud data platform, multi-cloud, separation of storage/compute</li>
+            <li><strong>Databricks:</strong> Lakehouse platform, Spark-based, unified analytics</li>
+            <li><strong>SingleStore:</strong> Real-time analytics, MySQL-compatible, in-memory</li>
+        </ul>
+
+        <h2>Common Interview Questions</h2>
+        <ol>
+            <li><strong>Explain the difference between clustered and non-clustered indexes.</strong></li>
+            <li><strong>How would you optimize a slow query?</strong> (EXPLAIN, indexing, query rewriting)</li>
+            <li><strong>Design a database schema for vulnerability management.</strong></li>
+            <li><strong>What's the difference between WHERE and HAVING?</strong></li>
+            <li><strong>Explain ACID properties with examples.</strong></li>
+            <li><strong>How do you handle database migrations in production?</strong></li>
+            <li><strong>When would you use SingleStore over traditional MySQL?</strong></li>
+            <li><strong>How do you prevent SQL injection?</strong> (Parameterized queries, ORMs)</li>
+            <li><strong>Explain database sharding.</strong></li>
+            <li><strong>How would you design for 150+ data sources?</strong> (ETL pipelines, data normalization)</li>
+        </ol>
+
+        <a href="index.html" class="back-btn">← Back to Index</a>
+    </div>
+</body>
+
+</html>

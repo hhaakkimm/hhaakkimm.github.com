@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile & Methodologies - Interview Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        p,
+        li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        ul,
+        ol {
+            margin-left: 2rem;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: #764ba2;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Index</a>
+
+        <h1>🔄 Agile & Scrum Methodologies</h1>
+
+        <h2>Agile Principles</h2>
+
+        <h3>The Agile Manifesto</h3>
+        <ul>
+            <li><strong>Individuals and interactions</strong> over processes and tools</li>
+            <li><strong>Working software</strong> over comprehensive documentation</li>
+            <li><strong>Customer collaboration</strong> over contract negotiation</li>
+            <li><strong>Responding to change</strong> over following a plan</li>
+        </ul>
+
+        <h3>Key Values</h3>
+        <ul>
+            <li>Iterative development</li>
+            <li>Continuous feedback and improvement</li>
+            <li>Self-organizing teams</li>
+            <li>Adaptive planning</li>
+            <li>Early and frequent delivery</li>
+        </ul>
+
+        <h2>Scrum Framework</h2>
+
+        <h3>Scrum Roles</h3>
+        <ul>
+            <li><strong>Product Owner:</strong> Defines features, prioritizes backlog, accepts work</li>
+            <li><strong>Scrum Master:</strong> Facilitates process, removes blockers, coaches team</li>
+            <li><strong>Development Team:</strong> Cross-functional, self-organizing, 5-9 members</li>
+        </ul>
+
+        <h3>Scrum Events</h3>
+        <ul>
+            <li><strong>Sprint (2-4 weeks):</strong> Fixed time-box for completing backlog items
+                <ul>
+                    <li>Typical duration: 2 weeks for most teams</li>
+                    <li>Goal: Deliver potentially shippable increment</li>
+                </ul>
+            </li>
+            <li><strong>Sprint Planning:</strong> Define sprint goal and select backlog items
+                <ul>
+                    <li>Duration: ~2 hours per week of sprint</li>
+                    <li>Output: Sprint backlog</li>
+                </ul>
+            </li>
+            <li><strong>Daily Standup (15 min):</strong> Synchronize activities
+                <ul>
+                    <li>What did I do yesterday?</li>
+                    <li>What will I do today?</li>
+                    <li>Any blockers?</li>
+                </ul>
+            </li>
+            <li><strong>Sprint Review:</strong> Demo completed work to stakeholders
+                <ul>
+                    <li>Duration: ~1 hour per week of sprint</li>
+                    <li>Gather feedback for next sprint</li>
+                </ul>
+            </li>
+            <li><strong>Sprint Retrospective:</strong> Reflect on process improvements
+                <ul>
+                    <li>What went well?</li>
+                    <li>What didn't go well?</li>
+                    <li>What should we improve?</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Scrum Artifacts</h3>
+        <ul>
+            <li><strong>Product Backlog:</strong> Prioritized list of features/requirements
+                <ul>
+                    <li>User stories with acceptance criteria</li>
+                    <li>Ordered by business value</li>
+                </ul>
+            </li>
+            <li><strong>Sprint Backlog:</strong> Items committed to current sprint
+                <ul>
+                    <li>Plus tasks to complete them</li>
+                    <li>Updates daily</li>
+                </ul>
+            </li>
+            <li><strong>Increment:</strong> Sum of all completed items
+                <ul>
+                    <li>Must be in usable condition</li>
+                    <li>Meets Definition of Done</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>User Stories & Estimation</h2>
+
+        <h3>Writing User Stories</h3>
+        <ul>
+            <li><strong>Format:</strong> "As a [role], I want [feature], so that [benefit]"</li>
+            <li><strong>Example:</strong>
+                <pre>As a security analyst,
+I want to filter vulnerabilities by severity,
+So that I can focus on the most critical issues first.
+
+Acceptance Criteria:
+- Filter dropdown with LOW, MEDIUM, HIGH, CRITICAL options
+- Results update in real-time
+- Filter state persists across page refreshes
+- Show count of filtered results</pre>
+            </li>
+        </ul>
+
+        <h3>Story Points & Estimation</h3>
+        <ul>
+            <li><strong>Fibonacci Scale:</strong> 1, 2, 3, 5, 8, 13, 21
+                <ul>
+                    <li>1-2: Simple tasks (few hours)</li>
+                    <li>3-5: Medium complexity (1-2 days)</li>
+                    <li>8-13: Complex features (3-5 days)</li>
+                    <li>21+: Should be broken down</li>
+                </ul>
+            </li>
+            <li><strong>Planning Poker:</strong> Team estimation technique
+                <ul>
+                    <li>Each member selects a card privately</li>
+                    <li>All reveal simultaneously</li>
+                    <li>Discuss differences, re-vote until consensus</li>
+                </ul>
+            </li>
+            <li><strong>Velocity:</strong> Average story points completed per sprint
+                <ul>
+                    <li>Used for capacity planning</li>
+                    <li>Improves over first few sprints</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Working in R&D Environments</h2>
+
+        <h3>Key Differences from Traditional Development</h3>
+        <ul>
+            <li><strong>Ambiguity:</strong> Requirements are exploratory, not fixed</li>
+            <li><strong>Experimentation:</strong> Many approaches may fail before finding the right one</li>
+            <li><strong>Pivots:</strong> Direction changes based on learnings</li>
+            <li><strong>Minimal Direction:</strong> High autonomy and self-direction required</li>
+        </ul>
+
+        <h3>Thriving with Minimal Direction</h3>
+        <ul>
+            <li><strong>Proactive Communication:</strong> Don't wait to be told what to do
+                <ul>
+                    <li>Ask clarifying questions early</li>
+                    <li>Share progress frequently</li>
+                    <li>Raise concerns immediately</li>
+                </ul>
+            </li>
+            <li><strong>Take Ownership:</strong> Drive your initiatives
+                <ul>
+                    <li>Propose solutions, not just problems</li>
+                    <li>Research independently</li>
+                    <li>Make informed decisions</li>
+                </ul>
+            </li>
+            <li><strong>Rapid Prototyping:</strong> Build, test, learn, iterate
+                <ul>
+                    <li>Create MVPs to validate assumptions</li>
+                    <li>Gather feedback early and often</li>
+                    <li>Don't over-engineer initially</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Cross-Functional Collaboration</h2>
+
+        <h3>Working with Product Teams</h3>
+        <ul>
+            <li>Understand business goals and user needs</li>
+            <li>Challenge requirements constructively</li>
+            <li>Suggest technical alternatives</li>
+            <li>Provide realistic estimates</li>
+        </ul>
+
+        <h3>Working with Security Experts</h3>
+        <ul>
+            <li>Learn domain language (CVE, CVSS, OWASP)</li>
+            <li>Ask "why" to understand context</li>
+            <li>Translate technical constraints clearly</li>
+            <li>Involve them early in design decisions</li>
+        </ul>
+
+        <h3>Global Team Collaboration</h3>
+        <ul>
+            <li>Asynchronous communication best practices
+                <ul>
+                    <li>Document decisions in writing</li>
+                    <li>Over-communicate context</li>
+                    <li>Use video recordings for complex topics</li>
+                </ul>
+            </li>
+            <li>Timezone considerations
+                <ul>
+                    <li>Find overlap hours for meetings</li>
+                    <li>Rotate meeting times fairly</li>
+                    <li>Use async tools (Slack, Notion, Confluence)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Code Reviews</h2>
+
+        <h3>Giving Feedback</h3>
+        <ul>
+            <li>Be respectful and constructive</li>
+            <li>Explain the "why" behind suggestions</li>
+            <li>Distinguish between must-fix and nice-to-have</li>
+            <li>Praise good patterns and solutions</li>
+        </ul>
+
+        <h3>Receiving Feedback</h3>
+        <ul>
+            <li>Don't take it personally</li>
+            <li>Ask for clarification if unclear</li>
+            <li>Learn from every review</li>
+            <li>Say thank you</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Interview Tip:</strong> Prepare examples of:
+            <ul>
+                <li>A time you worked with minimal direction and delivered results</li>
+                <li>How you handled ambiguous requirements in an R&D project</li>
+                <li>Collaboration with cross-functional teams</li>
+                <li>A failed experiment and what you learned</li>
+            </ul>
+        </div>
+
+        <h2>Common Interview Questions</h2>
+        <ol>
+            <li><strong>Explain the Scrum framework in your own words.</strong></li>
+            <li><strong>How do you handle changing requirements mid-sprint?</strong></li>
+            <li><strong>Describe a time you worked on a project with ambiguous goals.</strong></li>
+            <li><strong>How do you prioritize when everything is "urgent"?</strong></li>
+            <li><strong>What's your approach to estimating tasks?</strong></li>
+            <li><strong>How do you handle disagreements with product owners?</strong></li>
+            <li><strong>Describe your experience with remote/distributed teams.</strong></li>
+            <li><strong>How do you stay productive with minimal supervision?</strong></li>
+        </ol>
+
+        <a href="index.html" class="back-btn">← Back to Index</a>
+    </div>
+</body>
+
+</html>

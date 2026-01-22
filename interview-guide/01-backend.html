@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Development - Interview Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        p,
+        li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        ul {
+            margin-left: 2rem;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: #764ba2;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .important {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Index</a>
+
+        <h1>🐍 Backend Development: Python & Django</h1>
+
+        <h2>Python Fundamentals (Review for 5+ Years)</h2>
+
+        <h3>Core Concepts</h3>
+        <ul>
+            <li><strong>Data Structures:</strong> Lists, Tuples, Sets, Dictionaries, deque, defaultdict, Counter</li>
+            <li><strong>List Comprehensions & Generator Expressions:</strong>
+                <pre>squares = [x**2 for x in range(10)]
+gen = (x**2 for x in range(10))  # Memory efficient</pre>
+            </li>
+            <li><strong>Decorators:</strong> Function and class decorators, @property, @staticmethod, @classmethod
+                <pre>def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        print(f"{func.__name__} took {time.time()-start}s")
+        return result
+    return wrapper</pre>
+            </li>
+            <li><strong>Context Managers:</strong> <code>with</code> statement, <code>__enter__</code> and
+                <code>__exit__</code></li>
+            <li><strong>Iterators & Generators:</strong> <code>yield</code>, <code>__iter__</code>,
+                <code>__next__</code></li>
+            <li><strong>Async/Await:</strong> asyncio, coroutines, event loops (important for scalable systems)</li>
+        </ul>
+
+        <h3>Advanced Python Topics</h3>
+        <ul>
+            <li><strong>Memory Management:</strong> Reference counting, garbage collection, <code>__del__</code></li>
+            <li><strong>Metaclasses:</strong> Class creation, <code>type()</code>, <code>__new__</code> vs
+                <code>__init__</code></li>
+            <li><strong>Type Hints:</strong> <code>typing</code> module, Generic types, Protocol
+                <pre>from typing import List, Dict, Optional, Union
+
+def process_data(items: List[Dict[str, str]]) -> Optional[str]:
+    return items[0].get('name') if items else None</pre>
+            </li>
+            <li><strong>Concurrency:</strong>
+                <ul>
+                    <li>Threading (GIL limitations)</li>
+                    <li>Multiprocessing for CPU-bound tasks</li>
+                    <li>AsyncIO for I/O-bound tasks</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Django 4.2 Framework</h2>
+
+        <h3>Core Architecture (Must Know in Detail)</h3>
+        <ul>
+            <li><strong>MVT Pattern:</strong> Model-View-Template (explain how it differs from MVC)</li>
+            <li><strong>Request-Response Cycle:</strong>
+                <ol>
+                    <li>URL routing (URLconf)</li>
+                    <li>Middleware processing</li>
+                    <li>View execution</li>
+                    <li>Template rendering or JSON response</li>
+                </ol>
+            </li>
+            <li><strong>Django ORM:</strong>
+                <pre># QuerySet optimization
+users = User.objects.select_related('profile').prefetch_related('posts')
+# Prevents N+1 queries
+
+# Aggregation
+from django.db.models import Count, Avg
+Post.objects.aggregate(avg_likes=Avg('likes'))
+
+# F expressions for database-level operations
+from django.db.models import F
+Product.objects.update(price=F('price') * 1.1)</pre>
+            </li>
+            <li><strong>Migrations:</strong> Schema changes, data migrations, squashing migrations</li>
+        </ul>
+
+        <h3>Django REST Framework (DRF)</h3>
+        <ul>
+            <li><strong>Serializers:</strong>
+                <pre>class VulnerabilitySerializer(serializers.ModelSerializer):
+    severity_display = serializers.CharField(source='get_severity_display', read_only=True)
+    
+    class Meta:
+        model = Vulnerability
+        fields = ['id', 'cve_id', 'severity', 'severity_display', 'description']
+        read_only_fields = ['id', 'created_at']</pre>
+            </li>
+            <li><strong>ViewSets & Routers:</strong>
+                <pre>class VulnerabilityViewSet(viewsets.ModelViewSet):
+    queryset = Vulnerability.objects.all()
+    serializer_class = VulnerabilitySerializer
+    permission_classes = [IsAuthenticated]
+    
+    @action(detail=True, methods=['post'])
+    def mark_resolved(self, request, pk=None):
+        vulnerability = self.get_object()
+        vulnerability.status = 'resolved'
+        vulnerability.save()
+        return Response({'status': 'vulnerability resolved'})</pre>
+            </li>
+            <li><strong>Authentication & Permissions:</strong>
+                <ul>
+                    <li>TokenAuthentication, SessionAuthentication, JWT</li>
+                    <li>Custom permissions classes</li>
+                    <li>Object-level permissions</li>
+                </ul>
+            </li>
+            <li><strong>Pagination:</strong> PageNumberPagination, LimitOffsetPagination, CursorPagination</li>
+            <li><strong>Filtering & Search:</strong> django-filter, SearchFilter, OrderingFilter</li>
+            <li><strong>Throttling:</strong> Rate limiting for API endpoints</li>
+        </ul>
+
+        <h3>Performance Optimization</h3>
+        <ul>
+            <li><strong>Database Query Optimization:</strong>
+                <ul>
+                    <li><code>select_related()</code> for forward ForeignKey</li>
+                    <li><code>prefetch_related()</code> for reverse ForeignKey and ManyToMany</li>
+                    <li><code>only()</code> and <code>defer()</code> for field selection</li>
+                    <li><code>iterator()</code> for large querysets</li>
+                    <li>Database indexes on frequently queried fields</li>
+                </ul>
+            </li>
+            <li><strong>Caching:</strong>
+                <pre>from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+
+@cache_page(60 * 15)  # Cache for 15 minutes
+def vulnerability_list(request):
+    data = cache.get('vulnerabilities')
+    if not data:
+        data = list(Vulnerability.objects.all())
+        cache.set('vulnerabilities', data, timeout=900)
+    return JsonResponse(data, safe=False)</pre>
+            </li>
+            <li><strong>Celery for Background Tasks:</strong> Task queues, periodic tasks, result backends</li>
+        </ul>
+
+        <div class="important">
+            <strong>⚠️ Interview Focus Areas:</strong>
+            <ul>
+                <li>Be ready to design a RESTful API for vulnerability management</li>
+                <li>Explain how you'd handle 150+ security tool integrations</li>
+                <li>Discuss scaling strategies for high-volume vulnerability data</li>
+                <li>Know Django 4.2 new features (async views, CSRF trusted origins)</li>
+            </ul>
+        </div>
+
+        <h2>API Design Best Practices</h2>
+        <ul>
+            <li><strong>RESTful Principles:</strong> Resource naming, HTTP methods (GET, POST, PUT, PATCH, DELETE)</li>
+            <li><strong>Versioning:</strong> URL versioning (<code>/api/v1/</code>) vs header versioning</li>
+            <li><strong>Status Codes:</strong> 200, 201, 204, 400, 401, 403, 404, 500 (know when to use each)</li>
+            <li><strong>Error Handling:</strong>
+                <pre>{
+    "error": {
+        "code": "INVALID_CVE_FORMAT", 
+        "message": "CVE ID must match pattern CVE-YYYY-NNNNN",
+        "field": "cve_id"
+    }
+}</pre>
+            </li>
+            <li><strong>HATEOAS:</strong> Including links in responses for discoverability</li>
+            <li><strong>Documentation:</strong> OpenAPI/Swagger, drf-spectacular</li>
+        </ul>
+
+        <h2>Testing in Django</h2>
+        <ul>
+            <li><strong>Unit Tests:</strong> <code>TestCase</code>, <code>SimpleTestCase</code>
+                <pre>class VulnerabilityModelTest(TestCase):
+    def setUp(self):
+        self.vuln = Vulnerability.objects.create(
+            cve_id='CVE-2024-1234',
+            severity='HIGH'
+        )
+    
+    def test_str_representation(self):
+        self.assertEqual(str(self.vuln), 'CVE-2024-1234')</pre>
+            </li>
+            <li><strong>API Tests:</strong> <code>APITestCase</code>, <code>APIClient</code></li>
+            <li><strong>pytest-django:</strong> Fixtures, parametrize</li>
+            <li><strong>Coverage:</strong> Aim for 80%+ test coverage</li>
+            <li><strong>Mocking:</strong> <code>unittest.mock</code>, <code>patch</code> decorator</li>
+        </ul>
+
+        <h2>Security in Django</h2>
+        <ul>
+            <li><strong>CSRF Protection:</strong> How it works, CSRF tokens</li>
+            <li><strong>SQL Injection Prevention:</strong> ORM parameterized queries</li>
+            <li><strong>XSS Protection:</strong> Template auto-escaping, <code>|safe</code> filter</li>
+            <li><strong>CORS:</strong> django-cors-headers configuration</li>
+            <li><strong>Secrets Management:</strong> Environment variables, django-environ, AWS Secrets Manager</li>
+            <li><strong>HTTPS & Security Headers:</strong> HSTS, X-Frame-Options, Content-Security-Policy</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Pro Tip:</strong> For a vulnerability management platform, emphasize your understanding of:
+            <ul>
+                <li>Data normalization from 150+ different security tools</li>
+                <li>Handling high-volume data ingestion pipelines</li>
+                <li>Implementing priority/risk scoring algorithms</li>
+                <li>Building workflow automation for remediation</li>
+            </ul>
+        </div>
+
+        <h2>Common Interview Questions</h2>
+        <ol>
+            <li><strong>What's new in Django 4.2?</strong> (zoneinfo as default timezone, CSRF trusted origins
+                improvements)</li>
+            <li><strong>Explain the difference between select_related and prefetch_related.</strong></li>
+            <li><strong>How would you optimize a slow Django view?</strong> (django-debug-toolbar, query analysis,
+                caching)</li>
+            <li><strong>Design a vulnerability scoring system API.</strong> (Show models, serializers, views)</li>
+            <li><strong>How do you handle database migrations in production?</strong> (blue-green deployment, backwards
+                compatibility)</li>
+            <li><strong>Explain Django middleware and give use cases.</strong></li>
+            <li><strong>How would you implement rate limiting for API endpoints?</strong></li>
+            <li><strong>What's the difference between Django's save() and update()?</strong></li>
+        </ol>
+
+        <a href="index.html" class="back-btn">← Back to Index</a>
+    </div>
+</body>
+
+</html>
