@@ -351,37 +351,7 @@ Response:
             <li><strong>Design a caching layer for vulnerability data.</strong></li>
         </ol>
 
-        
-        <h2>Advanced Distributed Systems Patterns</h2>
-        <ul>
-            <li><strong>Event Sourcing:</strong> Store all changes as events, rebuild state from event log</li>
-            <li><strong>CQRS (Command Query Responsibility Segregation):</strong> Separate read and write models</li>
-            <li><strong>Saga Pattern:</strong> Distributed transactions across microservices with compensation</li>
-            <li><strong>Circuit Breaker:</strong> Prevent cascading failures in distributed systems</li>
-            <li><strong>Bulkhead Pattern:</strong> Isolate resources to prevent total system failure</li>
-        </ul>
-
-        <h2>Capacity Planning & Back-of-Envelope Calculations</h2>
-        <ul>
-            <li><strong>Storage Estimation:</strong>
-                <pre># 1M vulnerabilities/day from 150 tools
-1M vulns × 2KB/vuln × 365 days = 730GB/year
-With replication (3x) = 2.2TB/year</pre>
-            </li>
-            <li><strong>QPS Calculation:</strong>
-                <pre># 10M users, 10% daily active
-1M DAU × 50 requests/day = 50M requests/day
-50M / 86400 seconds ≈ 580 QPS
-Peak (3x) = 1740 QPS</pre>
-            </li>
-            <li><strong>Bandwidth:</strong>
-                <pre># API responses avg 50KB
-580 QPS × 50KB = 29MB/s = 232Mbps
-Peak: 700Mbps</pre>
-            </li>
-        </ul>
-
-<a href="index.html" class="back-btn">← Back to Index</a>
+        <a href="index.html" class="back-btn">← Back to Index</a>
     </div>
 </body>
 

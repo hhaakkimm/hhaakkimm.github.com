@@ -338,42 +338,7 @@ Acceptance Criteria:
             <li><strong>How do you stay productive with minimal supervision?</strong></li>
         </ol>
 
-        
-        <h2>Staff Engineer in R&D Environment</h2>
-        <ul>
-            <li><strong>Operating with Minimal Direction:</strong>
-                <ul>
-                    <li>Self-directed technical discovery and exploration</li>
-                    <li>Identifying and prioritizing high-value problems</li>
-                    <li>Prototyping and spike work to validate approaches</li>
-                    <li>Balancing exploration vs delivery</li>
-                </ul>
-            </li>
-            <li><strong>Ambiguity Tolerance:</strong>
-                <ul>
-                    <li>Breaking down unclear requirements into actionable tasks</li>
-                    <li>Making technical decisions with incomplete information</li>
-                    <li>Pivot quickly when new information emerges</li>
-                </ul>
-            </li>
-            <li><strong>Technical Vision & Strategy:</strong>
-                <ul>
-                    <li>Architecture Decision Records (ADRs)</li>
-                    <li>Technical roadmap planning (3-6 month horizon)</li>
-                    <li>Tech debt prioritization and paydown strategy</li>
-                </ul>
-            </li>
-            <li><strong>Cross-Team Collaboration:</strong>
-                <ul>
-                    <li>Leading technical discussions and design reviews</li>
-                    <li>Influencing without authority</li>
-                    <li>Mentoring and coaching junior engineers</li>
-                    <li>Stakeholder management (product, leadership)</li>
-                </ul>
-            </li>
-        </ul>
-
-<a href="index.html" class="back-btn">← Back to Index</a>
+        <a href="index.html" class="back-btn">← Back to Index</a>
     </div>
 </body>
 

@@ -322,22 +322,7 @@ PARTITION BY RANGE (YEAR(discovery_date)) (
             <li><strong>How would you design for 150+ data sources?</strong> (ETL pipelines, data normalization)</li>
         </ol>
 
-        
-        <h3>Sharding & Horizontal Scaling</h3>
-        <ul>
-            <li><strong>Consistent Hashing for Sharding:</strong> Distribute data evenly across shards</li>
-            <li><strong>Range-Based Sharding:</strong> Partition by date or ID ranges</li>
-            <li><strong>Handling Cross-Shard Queries:</strong> Application-level aggregation or denormalization</li>
-        </ul>
-
-        <h3>Data Engineering for 150+ Sources</h3>
-        <ul>
-            <li><strong>Unified Schema Design:</strong> Normalize diverse input formats</li>
-            <li><strong>Data Quality Validation:</strong> Check completeness, accuracy, consistency</li>
-            <li><strong>Deduplication Logic:</strong> Identify same vulnerability from different tools</li>
-        </ul>
-
-<a href="index.html" class="back-btn">← Back to Index</a>
+        <a href="index.html" class="back-btn">← Back to Index</a>
     </div>
 </body>
 

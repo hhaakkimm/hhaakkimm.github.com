@@ -347,48 +347,7 @@
             <li><strong>Follow Up:</strong> Send thank you email within 24 hours</li>
         </ul>
 
-        
-        <h2>Staff-Level Behavioral Scenarios</h2>
-        <ul>
-            <li><strong>Technical Leadership:</strong>
-                <ul>
-                    <li>"Tell me about a time you led a major system architecture decision"</li>
-                    <li>"Describe resolving a technical disagreement with senior engineers"</li>
-                    <li>"How did you handle a production incident affecting thousands of users?"</li>
-                </ul>
-            </li>
-            <li><strong>Managing Tech Debt vs Features:</strong>
-                <ul>
-                    <li>"How do you prioritize technical debt against feature velocity?"</li>
-                    <li>"Tell me about saying no to a stakeholder request"</li>
-                    <li>"Describe championing a technical initiative that wasn't immediately valuable"</li>
-                </ul>
-            </li>
-            <li><strong>Mentorship & Influence:</strong>
-                <ul>
-                    <li>"How have you mentored underperforming engineers?"</li>
-                    <li>"Describe influencing architecture decisions across teams"</li>
-                    <li>"Tell me about improving engineering culture or practices"</li>
-                </ul>
-            </li>
-            <li><strong>STAR Method with Metrics:</strong>
-                <pre>Situation: "Our vulnerability platform handled 150+ security tools..."
-Task: "We needed to reduce false positives by 50% within quarter..."
-Action: "I designed ML-based deduplication system, reduced API calls..."
-Result: "Achieved 60% FP reduction, saved $100K/year in analyst time"</pre>
-            </li>
-        </ul>
-
-        <h2>Common Staff Engineer Questions</h2>
-        <ol>
-            <li><strong>Describe your biggest technical failure and lessons learned</strong></li>
-            <li><strong>How do you stay current with technology trends?</strong></li>
-            <li><strong>Tell me about designing a system that scaled 10x</strong></li>
-            <li><strong>How do you balance perfectionism with shipping?</strong></li>
-            <li><strong>Describe a time you had to make a build vs buy decision</strong></li>
-        </ol>
-
-<a href="index.html" class="back-btn">← Back to Index</a>
+        <a href="index.html" class="back-btn">← Back to Index</a>
     </div>
 </body>
 
